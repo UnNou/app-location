@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, FlatList, Image, TouchableOpacity, StyleSheet } from "react-native";
 
 export default function CountryScreen({ navigation }) {
-  const [search, setSearch] = useState("");
-  const [countries, setCountries] = useState([]);
+  const [search, setSearch] = useState("");         // search state to filter countries
+  const [countries, setCountries] = useState([]);   // and state to hold country data
 
-  useEffect(() => {
+  useEffect(() => { // fetch list of countries from external API
     fetch("https://restcountries.com/v3.1/all")
       .then((response) => response.json())
-      .then((data) => setCountries(data))
+      .then((data) => setCountries(data)) // Set fetched country data
       .catch((error) => console.error("Error fetching countries:", error));
   }, []);
 
@@ -55,10 +55,27 @@ export default function CountryScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, backgroundColor: "#fff" },
-  title: { fontSize: 20, fontWeight: "bold", marginBottom: 10 },
-  input: { borderWidth: 1, padding: 10, marginBottom: 10, borderRadius: 5 },
-  item: { flexDirection: "row", alignItems: "center", padding: 10, borderBottomWidth: 1 },
+  title: { fontSize: 24, fontWeight: "bold", marginBottom: 20, color: "#333" },
+  input: { 
+    borderWidth: 1, 
+    padding: 12, 
+    width: "100%", 
+    marginBottom: 15, 
+    borderRadius: 8, 
+    backgroundColor: "#f8f8f8", 
+    borderColor: "#ddd", 
+  },
+  item: { 
+    flexDirection: "row", 
+    alignItems: "center", 
+    padding: 15, 
+    borderBottomWidth: 1, 
+    borderColor: "#ddd", 
+    borderRadius: 8, 
+    backgroundColor: "#f9f9f9",
+    marginBottom: 10 
+  },
   flag: { width: 50, height: 30, marginRight: 10 },
-  countryName: { fontSize: 16, fontWeight: "bold" },
-  capital: { fontSize: 14, color: "#555" },
+  countryName: { fontSize: 18, fontWeight: "bold", color: "#333" },
+  capital: { fontSize: 16, color: "#666" },
 });
