@@ -15,16 +15,13 @@ export default function LocationScreen1({ navigation }) {
       setLocations(locationsList);
     });
 
-    return () => unsubscribe(); // Cleanup when component unmounts
+    return () => unsubscribe();
   }, []);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Locations</Text>
-
-      {/* Add Location Button */}
       <Button title="Add Location" onPress={() => navigation.navigate("Add Location")} />
-
       <FlatList
         data={locations}
         keyExtractor={(item) => item.id}

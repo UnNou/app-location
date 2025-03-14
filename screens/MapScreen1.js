@@ -4,22 +4,23 @@ import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
 export default function MapScreen1({ route }) {
-  const [region, setRegion] = useState(null); // Start with no location
+  const [region, setRegion] = useState(null);
   const { cityName } = route.params || {};
 
   useEffect(() => {
     if (cityName) {
-      (async () => {
-        const geocode = await Location.geocodeAsync(cityName);
-        if (geocode.length > 0) {
-          setRegion({
-            latitude: geocode[0].latitude,
-            longitude: geocode[0].longitude,
-            latitudeDelta: 0.1,
-            longitudeDelta: 0.1,
-          });
-        }
-      })();
+      Location.geocodeAsync(cityName)
+        .then((locations) => {
+          if (locations.length > 0) {
+            setRegion({
+              latitude: locations[0].latitude,
+              longitude: locations[0].longitude,
+              latitudeDelta: 5,
+              longitudeDelta: 5,
+            });
+          }
+        })
+        .catch((error) => console.error("Geocoding error:", error));
     }
   }, [cityName]);
 
@@ -30,7 +31,7 @@ export default function MapScreen1({ route }) {
           <Marker coordinate={region} title={cityName} />
         </MapView>
       ) : (
-        <Text style={styles.loading}>Loading map...</Text>
+        <Text>Loading map...</Text>
       )}
     </View>
   );
@@ -38,6 +39,5 @@ export default function MapScreen1({ route }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  map: { width: "100%", height: "100%" },
-  loading: { flex: 1, textAlign: "center", marginTop: 50, fontSize: 18 },
+  map: { flex: 1 },
 });
