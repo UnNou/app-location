@@ -11,4 +11,4 @@ The Location app includes the following features:
     Map View: Displays a map with the selected city's location.
     Search Function: Allows users to search for countries and capitals using an external API.
     Firebase Integration: Uses Firebase Firestore for real-time syncing and storage of location data.
-    (I left the login feature out of this version due to technical issues, as I had to redo the task a few times from almost the beginning.)
+    (I left the login feature out of this version due to technical issues with expo, as I had to redo the task a few times from almost the beginning, including the entire            repository. That's also the reason why the commits are inconsistent in this project. )
