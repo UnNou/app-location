@@ -1,11 +1,10 @@
-import 'react-native-gesture-handler';
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import LocationsScreen from "./screens/LocationsScreen";
-import AddLocationScreen from "./screens/AddLocationScreen";
-import MapScreen from "./screens/MapScreen";
+import LocationsScreen from "./screens/LocationScreen1";
+import AddLocationScreen from "./screens/AddLocationScreen"; 
+import MapScreen from "./screens/MapScreen1";
 
 const Tab = createBottomTabNavigator();
 
