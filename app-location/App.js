@@ -1,20 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
+import LocationsScreen from "./screens/LocationsScreen";
+import AddLocationScreen from "./screens/AddLocationScreen";
+import MapScreen from "./screens/MapScreen";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Screen 
+          name="Locations" 
+          component={LocationsScreen} 
+          options={{ tabBarIcon: ({ color, size }) => (
+            <Ionicons name="list" size={size} color={color} />
+          )}}
+        />
+        <Tab.Screen 
+          name="Add Location" 
+          component={AddLocationScreen} 
+          options={{ tabBarIcon: ({ color, size }) => (
+            <Ionicons name="add-circle" size={size} color={color} />
+          )}}
+        />
+        <Tab.Screen 
+          name="Map" 
+          component={MapScreen} 
+          options={{ tabBarIcon: ({ color, size }) => (
+            <Ionicons name="map" size={size} color={color} />
+          )}}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
